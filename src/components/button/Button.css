@@ -1,0 +1,148 @@
+.button {
+  height: var(--button-height);
+  padding: var(--button-vertical-paddings) var(--button-horizontal-paddings) var(--button-vertical-paddings) var(--button-horizontal-paddings);
+  font-size: var(--button-font-size);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-background-color);
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  width: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: scale cubic-bezier(0, -0.3, 0.5, 1.3) 500ms;
+  cursor: default;
+}
+.button .button-content {
+  gap: var(--button-horizontal-gap);
+  color: var(--button-color);
+}
+.button.enabled {
+  cursor: pointer;
+}
+.button.enabled:before {
+  content: "";
+  opacity: 12%;
+  background-color: var(--button-color);
+  position: absolute;
+  width: 0%;
+  left: 0;
+  height: 0%;
+}
+@media (hover: hover) {
+  .button.enabled:hover::before {
+    transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out 500ms;
+    width: 100%;
+    border-radius: inherit;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+  .button.enabled:hover .button-content {
+    scale: 1.05;
+  }
+  .button.enabled:not(:hover)::before {
+    transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out 500ms;
+    height: auto;
+    border-radius: 50%;
+    width: 0;
+    aspect-ratio: 1/1;
+  }
+}
+.button.enabled:active {
+  scale: 0.95;
+}
+.button.enabled:active::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+}
+.button.disabled {
+  opacity: 36%;
+}
+.button.loading .button-content {
+  opacity: 0%;
+}
+.button.loading::after {
+  content: "";
+  position: absolute;
+  width: calc(100% / 3);
+  height: 100%;
+  background: linear-gradient(to right, transparent 0%, var(--button-color) 50%, transparent 100%);
+  animation: shimmer 1s linear infinite;
+  opacity: 12%;
+}
+@-moz-keyframes shimmer {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@-webkit-keyframes shimmer {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@-o-keyframes shimmer {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+@keyframes shimmer {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+.button-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: scale cubic-bezier(0, -0.3, 0.5, 1.3) 500ms;
+}
+.button-loader {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border: var(--loader-border-radius) solid var(--loader-border-color);
+  position: absolute;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@-moz-keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
+}
