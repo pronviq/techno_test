@@ -1,6 +1,6 @@
 button-props()
   height: var(--button-height)
-  padding: var(--button-vertical-paddings) var(--button-horizontal-paddings) var(--button-vertical-paddings) var(--button-horizontal-paddings)
+  padding: var(--button-vertical-paddings) var(--button-horizontal-paddings)
   font-size: var(--button-font-size)
   border-radius: var(--button-border-radius)
   background-color: var(--button-background-color)
@@ -25,6 +25,7 @@ loader-props()
   border: none
   transition: scale cubic-bezier(0, -0.3, 0.5, 1.3) 500ms
   cursor default
+
   &.enabled
     cursor pointer
     &:before
@@ -35,6 +36,10 @@ loader-props()
       width: 0%
       left: 0
       height: 0%
+       
+    &:focus
+      outline: 2px solid dodgerblue
+      outline-offset: 1px
 
     @media (hover: hover)
       &:hover

@@ -1,6 +1,6 @@
 .button {
   height: var(--button-height);
-  padding: var(--button-vertical-paddings) var(--button-horizontal-paddings) var(--button-vertical-paddings) var(--button-horizontal-paddings);
+  padding: var(--button-vertical-paddings) var(--button-horizontal-paddings);
   font-size: var(--button-font-size);
   border-radius: var(--button-border-radius);
   background-color: var(--button-background-color);
@@ -30,6 +30,10 @@
   width: 0%;
   left: 0;
   height: 0%;
+}
+.button.enabled:focus {
+  outline: 2px solid #1e90ff;
+  outline-offset: 1px;
 }
 @media (hover: hover) {
   .button.enabled:hover::before {

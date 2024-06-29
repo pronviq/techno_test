@@ -5,10 +5,10 @@ import { SIZES, STYLES } from "./Counter.config";
 
 const Counter: React.FC<CounterProps> = ({
   counterStyle = "primary",
-  size = 16,
-  stroke = "false",
-  quantity = "1",
-  pulse,
+  size = 8,
+  stroke = "true",
+  quantity = "",
+  pulse = false,
 }) => {
   if (parseInt(quantity).toString() === quantity && parseInt(quantity) > 99) quantity = "99+";
   if (quantity.length > 3) quantity = quantity.slice(0, 3);
