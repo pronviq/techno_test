@@ -28,6 +28,7 @@ loader-props()
 
   &.enabled
     cursor pointer
+
     &:before
       content: ""
       opacity: 12%
@@ -36,15 +37,28 @@ loader-props()
       width: 0%
       left: 0
       height: 0%
-       
-    &:focus
-      outline: 2px solid dodgerblue
-      outline-offset: 1px
+    
+    &:after
+      content: ""
+      border-radius: 50%
+      position absolute
+      left: var(--x)
+      top: var(--y)
+      transform: translate(-50%, -50%)
+      width: 0
+      height: 0
+      background-color: var(--button-color)
+      opacity: 20%
+      aspect-ratio: 1 / 1
+
+    &:focus-visible
+      outline: 3px solid dodgerblue
+      outline-offset: 2px
 
     @media (hover: hover)
       &:hover
         &::before
-          transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out 500ms
+          transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out
           width: 100%
           border-radius: inherit
           height: auto
@@ -55,7 +69,7 @@ loader-props()
 
       &:not(:hover)
         &::before
-          transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out 500ms
+          transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 500ms, height linear 500ms, border-radius 500ms ease-out
           height: auto
           border-radius: 50%
           width: 0
@@ -64,10 +78,11 @@ loader-props()
     &:active
       scale: .95
       &::after
+        transition: width cubic-bezier(0, -0.3, 0.5, 1.3) 1s, height cubic-bezier(0, -0.3, 0.5, 1.3) 1s
         content: ""
         position absolute
-        width: 200%
-        height: 200%
+        width: 400%
+        height: auto
 
   &.disabled
     opacity: 36%
@@ -94,10 +109,13 @@ loader-props()
   display: flex
   align-items center
   flex-wrap: nowrap
-  white-space: nowrap
-  overflow: hidden
-  text-overflow: ellipsis
+  width: 100%
   transition: scale cubic-bezier(0, -0.3, 0.5, 1.3) 500ms
+
+.button-label
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
 
 .button-loader
   loader-props()

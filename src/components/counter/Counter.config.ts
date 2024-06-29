@@ -9,6 +9,7 @@ export const STYLES: Record<TCounterStyle, Record<string, string>> = {
     "--counter-background-color": "#8366561F",
     "--counter-color": "black",
   },
+  parent: {},
 };
 
 export const SIZES: Record<TSize, Record<string, string>> = {
@@ -28,18 +29,18 @@ export const SIZES: Record<TSize, Record<string, string>> = {
     "--counter-horizontal-paddings": "4px",
     "--counter-size": "16px",
     "--counter-stroke-width": "2px",
-    "--counter-font-size": "10px",
+    "--counter-font-size": "11px",
   },
   20: {
     "--counter-horizontal-paddings": "4px",
     "--counter-size": "20px",
     "--counter-stroke-width": "2px",
-    "--counter-font-size": "14px",
+    "--counter-font-size": "13px",
   },
   24: {
     "--counter-horizontal-paddings": "6px",
     "--counter-size": "24px",
     "--counter-stroke-width": "3px",
-    "--counter-font-size": "16px",
+    "--counter-font-size": "15px",
   },
 };

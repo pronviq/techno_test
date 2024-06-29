@@ -6,5 +6,5 @@ export interface CounterProps {
   pulse?: boolean;
 }
 
-export type TCounterStyle = "primary" | "secondary";
+export type TCounterStyle = "primary" | "secondary" | "parent";
 export type TSize = 8 | 12 | 16 | 20 | 24;

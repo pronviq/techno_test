@@ -7,7 +7,7 @@ const Counter: React.FC<CounterProps> = ({
   counterStyle = "primary",
   size = 8,
   stroke = "true",
-  quantity = "",
+  quantity = "1",
   pulse = false,
 }) => {
   if (parseInt(quantity).toString() === quantity && parseInt(quantity) > 99) quantity = "99+";

@@ -4,14 +4,18 @@ export interface ButtonProps {
   buttonStyle?: TButtonStyle;
   size?: TSize;
   state?: TState;
-  setState?: () => void;
   counter?: boolean;
-  focused?: boolean;
-  label: string;
-  Counter?: ReactNode;
+  children?: ReactNode;
+  quantity?: string;
+  label?: string;
   onClick?: () => void;
+  setState?: (s: string) => void;
+}
+
+export interface LabelProps {
+  children: string;
 }
 
 export type TButtonStyle = "primary" | "secondary";
 export type TSize = 28 | 36 | 56;
-export type TState = "enabled" | "loading" | "disabled" | "pressed";
+export type TState = "enabled" | "loading" | "disabled";

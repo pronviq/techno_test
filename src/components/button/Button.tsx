@@ -1,44 +1,62 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import "./Button.css";
-import { ButtonProps } from "./Button.model";
+import { ButtonProps, LabelProps } from "./Button.model";
 import { SIZES, STYLES } from "./Button.config";
+import Counter from "../counter/Counter";
 
 /**
  * Базовый компонент, который сообщает пользователю о действии, которое он может совершить.
  */
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   buttonStyle = "primary",
   size = 36,
   state = "enabled",
-  label = "Что сделать",
-  setState,
   counter,
-  Counter,
+  label,
+  setState,
   onClick,
-}) => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const handleMouseDown = (e: MouseEvent) => {
-    setCoords({ x: e.clientX, y: e.clientY });
+  children,
+  quantity,
+}: ButtonProps) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.setProperty("--x", e.pageX - e.currentTarget.offsetLeft + "px");
+    e.currentTarget.style.setProperty("--y", e.pageY - e.currentTarget.offsetTop + "px");
   };
 
-  useEffect(() => {
-    buttonRef.current?.addEventListener("mousedown", handleMouseDown);
-    return () => buttonRef.current?.removeEventListener("mousedown", handleMouseDown);
-  });
+  const handleClick = () => {
+    state = "loading";
+  };
 
   return (
     <button
-      ref={buttonRef}
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
       tabIndex={state !== "enabled" ? -1 : 1}
-      style={{ ...SIZES[size], ...STYLES[buttonStyle] }}
+      style={{
+        ...SIZES[size],
+        ...STYLES[buttonStyle],
+      }}
       className={"button" + ` ${state}`}
     >
       <div className="button-content">
-        {label}
-        {Counter}
+        {children}
+        {label && <Button.Label>{label}</Button.Label>}
+        {counter && (
+          <Button.Counter
+            quantity={quantity}
+            counterStyle="parent"
+            size={size === 28 ? 16 : size === 36 ? 20 : 24}
+          />
+        )}
       </div>
-      {state === "loading" && <span className="button-loader" />}
+      {state === "loading" && <Button.Loader />}
     </button>
   );
 };
+
+Button.Label = ({ children }: LabelProps) => {
+  return <span className="button-label">{children}</span>;
+};
+
+Button.Counter = Counter;
+Button.Loader = () => <span className="button-loader" />;

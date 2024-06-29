@@ -1,9 +1,11 @@
 counter-props()
 	background-color: var(--counter-background-color)
 	color: var(--counter-color)
-	height: var(--counter-size)
+	min-height: var(--counter-size)
+	max-height: var(--counter-size)
+	max-width: max(var(--counter-size), min-content)
 	min-width: var(--counter-size)
-	padding: 0 var(--counter-horizontal-paddings) / 2
+	padding: 0 calc(var(--counter-horizontal-paddings) / 2) 0 calc(var(--counter-horizontal-paddings) / 2)
 	font-size: var(--counter-font-size)
 
 .counter
@@ -11,4 +13,5 @@ counter-props()
 	display flex
 	justify-content center
 	align-items center
+	stroke: 1px solid black
 	border-radius: 50%
