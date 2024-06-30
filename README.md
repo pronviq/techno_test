@@ -19,7 +19,7 @@ git clone git@github.com:pronviq/techno_test.git
 npm install
 ```
 
-## Использование: 🤝
+## Использование 🤝
 ```bash
 # Запуск тестов
 npm run test
