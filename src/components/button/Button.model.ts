@@ -4,12 +4,14 @@ export interface ButtonProps {
   buttonStyle?: TButtonStyle;
   size?: TSize;
   state?: TState;
-  counter?: boolean;
   children?: ReactNode;
-  quantity?: string;
-  label?: string;
   onClick?: () => void;
   setState?: (s: string) => void;
+}
+
+export interface ButtonContextProps {
+  size: TSize;
+  buttonStyle: TButtonStyle;
 }
 
 export interface LabelProps {

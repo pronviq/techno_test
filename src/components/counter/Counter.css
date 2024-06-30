@@ -5,11 +5,79 @@
   max-height: var(--counter-size);
   max-width: min-content;
   min-width: var(--counter-size);
-  padding: 0 calc(var(--counter-horizontal-paddings) / 2) 0 calc(var(--counter-horizontal-paddings) / 2);
+  padding: calc(var(--counter-horizontal-paddings) / 2);
   font-size: var(--counter-font-size);
   display: flex;
   justify-content: center;
   align-items: center;
-  stroke: 1px solid #000;
+  position: relative;
   border-radius: 50%;
+}
+.counter .pulse,
+.counter .pulse2 {
+  position: absolute;
+  height: var(--counter-size);
+  width: var(--counter-size);
+  border-radius: 50%;
+  background-color: inherit;
+  animation: pulsar 2s infinite;
+}
+.counter .pulse2 {
+  animation-delay: 0.25s;
+}
+@-moz-keyframes pulsar {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@-webkit-keyframes pulsar {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@-o-keyframes pulsar {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@keyframes pulsar {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
 }

@@ -1,62 +1,62 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Button.css";
 import { ButtonProps, LabelProps } from "./Button.model";
 import { SIZES, STYLES } from "./Button.config";
 import Counter from "../counter/Counter";
+import { ButtonContext, useButton } from "./Button.context";
 
-/**
- * Базовый компонент, который сообщает пользователю о действии, которое он может совершить.
- */
 export const Button = ({
   buttonStyle = "primary",
   size = 36,
   state = "enabled",
-  counter,
-  label,
-  setState,
   onClick,
   children,
-  quantity,
 }: ButtonProps) => {
   const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.style.setProperty("--x", e.pageX - e.currentTarget.offsetLeft + "px");
     e.currentTarget.style.setProperty("--y", e.pageY - e.currentTarget.offsetTop + "px");
   };
 
-  const handleClick = () => {
-    state = "loading";
+  const handleTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
+    const touch = e.touches[0];
+    e.currentTarget.style.setProperty("--x", touch.clientX - e.currentTarget.offsetLeft + "px");
+    e.currentTarget.style.setProperty("--y", touch.clientY - e.currentTarget.offsetTop + "px");
   };
 
   return (
     <button
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
+      data-testid="mybutton"
+      disabled={state === "disabled"}
       tabIndex={state !== "enabled" ? -1 : 1}
+      onClick={onClick}
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleTouchStart}
       style={{
         ...SIZES[size],
         ...STYLES[buttonStyle],
       }}
       className={"button" + ` ${state}`}
     >
-      <div className="button-content">
-        {children}
-        {label && <Button.Label>{label}</Button.Label>}
-        {counter && (
-          <Button.Counter
-            quantity={quantity}
-            counterStyle="parent"
-            size={size === 28 ? 16 : size === 36 ? 20 : 24}
-          />
-        )}
-      </div>
-      {state === "loading" && <Button.Loader />}
+      <ButtonContext.Provider
+        value={{
+          buttonStyle,
+          size,
+        }}
+      >
+        <div data-testid="mybutton-content" className="button-content">
+          {children}
+        </div>
+        {state === "loading" && <span className="button-loader" />}
+      </ButtonContext.Provider>
     </button>
   );
 };
 
-Button.Label = ({ children }: LabelProps) => {
+const Label = ({ children }: LabelProps) => {
+  const buttonContext = useButton();
+  if (!buttonContext) throw new Error("Label must be used within a Button component");
   return <span className="button-label">{children}</span>;
 };
 
+Button.Label = Label;
 Button.Counter = Counter;
-Button.Loader = () => <span className="button-loader" />;

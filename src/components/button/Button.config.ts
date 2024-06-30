@@ -5,14 +5,11 @@ export const STYLES: Record<TButtonStyle, Record<string, string>> = {
     "--button-background-color": "#FF7700",
     "--button-color": "white",
     "--loader-border-color": "white",
-    "--counter-background-color": "#FFFFFF1F",
-    "--counter-color": "white",
   },
   secondary: {
     "--button-background-color": "#8366561F",
     "--button-color": "black",
     "--loader-border-color": "black",
-    "--counter-background-color": "#8366561F",
   },
 };
 

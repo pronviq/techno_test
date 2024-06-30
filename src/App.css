@@ -9,32 +9,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.containers {
-  width: 835px;
-  height: 600px;
-  border: 1px solid #789;
-  display: flex;
   gap: 20px;
-  padding: 20px;
   flex-wrap: wrap;
 }
-.container {
+.counters {
+  width: 180px;
+  height: 100px;
+  border: 1px solid #789;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
   align-items: center;
-  height: min-content;
+  justify-content: center;
 }
-.container-title {
-  color: #789;
-}
-.container-content {
-  width: 250px;
-  height: 150px;
+.buttons {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #789;
   display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 5px;
-  border: 1px solid #789;
 }

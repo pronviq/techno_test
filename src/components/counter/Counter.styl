@@ -5,13 +5,34 @@ counter-props()
 	max-height: var(--counter-size)
 	max-width: max(var(--counter-size), min-content)
 	min-width: var(--counter-size)
-	padding: 0 calc(var(--counter-horizontal-paddings) / 2) 0 calc(var(--counter-horizontal-paddings) / 2)
+	padding: calc(var(--counter-horizontal-paddings) / 2) 
 	font-size: var(--counter-font-size)
 
-.counter
+.counter	
 	counter-props()
 	display flex
 	justify-content center
 	align-items center
-	stroke: 1px solid black
+	position relative
 	border-radius: 50%
+	.pulse, .pulse2
+		position: absolute
+		height: var(--counter-size)
+		width: var(--counter-size)
+		border-radius: 50%
+		background-color: inherit
+		animation: pulsar 2s infinite
+
+	.pulse2
+		animation-delay: 0.25s
+
+	@keyframes pulsar
+		0%
+			opacity: 0.5;
+			transform: scale(1)
+		50%
+			opacity: 0;
+			transform: scale(3)
+		100%
+			opacity: 0;
+			transform: scale(3)

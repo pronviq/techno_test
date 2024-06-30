@@ -9,7 +9,17 @@ export const STYLES: Record<TCounterStyle, Record<string, string>> = {
     "--counter-background-color": "#8366561F",
     "--counter-color": "black",
   },
-  parent: {},
+};
+
+export const PARENT_STYLES = {
+  primary: {
+    "--counter-background-color": "#FFFFFF1F",
+    "--counter-color": "white",
+  },
+  secondary: {
+    "--counter-background-color": "#8366561F",
+    "--counter-color": "black",
+  },
 };
 
 export const SIZES: Record<TSize, Record<string, string>> = {
